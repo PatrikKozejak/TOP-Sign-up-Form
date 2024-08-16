@@ -42,7 +42,7 @@ li {
   font: 6rem "norsebold", monospace;
 }
 
-.form-div {
+.form-section {
   flex: 5;
   background-color: white;
 }
@@ -69,19 +69,19 @@ li {
 
 .paragraph-wrapper {
   background-color: #eef1f3;
-  padding: 0px 0px 15px 44px;
+  padding: 0px 44px;
 }
 
 p {
   font-size: 20px;
-  width: 60ch;
+  width: clamp(30ch, 100%, 55ch);
   font-weight: 600;
   padding-top: 140px;
   padding-bottom: 48px;
 }
 
 form {
-  padding: 20px 0px 15px 44px;
+  padding: 20px 44px 15px 44px;
 }
 
 .img-wrapper {
@@ -90,4 +90,85 @@ form {
 
 .odin {
   height: 100%;
+}
+
+.form-div {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: clamp(10px, 5vw, 50px);
+}
+
+.form-field {
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  width: 30%;
+  max-width: 250px;
+  flex-direction: column;
+  margin-top: 40px;
+}
+
+.form-field label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 4px;
+}
+
+.form-field input {
+  padding: 4px 8px;
+  height: 28px;
+  border: 2px solid #e5e7eb;
+  border-radius: 4px;
+}
+
+.form-field input:focus {
+  outline: none;
+  border: 2px solid blue;
+  box-shadow: 2px 2px 5px lightgray;
+}
+
+.form-field input:user-invalid {
+  outline: none;
+  border: 2px solid rgb(205, 4, 4);
+}
+
+input + span {
+  position: relative;
+}
+
+input[type="text"]:user-invalid + span::after {
+  position: absolute;
+  content: "Should be at least 2 characters long";
+  color: rgb(205, 4, 4);
+  font-size: 70%;
+  top: 2px;
+  left: 4px;
+}
+
+input[type="email"]:user-invalid + span::after {
+  position: absolute;
+  content: "For example: 'your@email.com'";
+  color: rgb(205, 4, 4);
+  font-size: 70%;
+  top: 2px;
+  left: 4px;
+}
+
+input[type="tel"]:user-invalid + span::after {
+  position: absolute;
+  content: "Phone is in incorrect format";
+  color: rgb(205, 4, 4);
+  font-size: 70%;
+  top: 2px;
+  left: 4px;
+}
+
+input[type="password"]:user-invalid + span::after {
+  position: absolute;
+  content: "Too weak";
+  color: rgb(205, 4, 4);
+  font-size: 70%;
+  top: 2px;
+  left: 4px;
 }
